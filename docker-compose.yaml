@@ -1,0 +1,46 @@
+version: "3.9"
+services:
+  dotnet-mvc-movie:
+    build: 
+      context: ./MvcMovie
+    restart: always
+    volumes:
+      - ~/.aspnet/https:/https:ro
+    ports:
+      - 7186:7186
+      - 5071:5070
+      - 39178:39178
+    env_file:
+      - ./dev.env
+
+
+  mongo-backend:
+    image: mongo
+    restart: always
+    ports:
+      - 27018:27017
+    volumes:
+      - db-data1:/data/db
+    networks:
+      - MONGO
+    env_file:
+      - ./dev.env
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8050:8081
+    depends_on:
+      - mongo-backend
+    networks:
+      - MONGO
+    env_file:
+      - ./dev.env
+
+volumes:
+  db-data1:
+
+networks:
+  MONGO:
+    name: MONGO
