@@ -9,6 +9,8 @@ See the [Prerequisites](Create a web API with ASP.NET Core and MongoDB) from the
 
 # Getting Started
 
+[Seeding DB](https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mongo-app?view=aspnetcore-7.0&tabs=visual-studio#configure-mongodb)
+
 ## Local Development
 
 To start the app using locally installed .NET 7.0 SDK:
