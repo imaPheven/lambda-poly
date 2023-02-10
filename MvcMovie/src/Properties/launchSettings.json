@@ -8,6 +8,14 @@
     }
   },
   "profiles": {
+    "publicdev": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "applicationUrl": "http://+:80",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
     "MvcMovie": {
       "commandName": "Project",
       "launchBrowser": true,

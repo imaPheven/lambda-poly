@@ -21,7 +21,7 @@ public class BooksController : ControllerBase
     public async Task<ActionResult<Book>> Get(string id)
     {
         var book = await _booksService.GetAsync(id);
-
+        
         if (book is null)
         {
             return NotFound();

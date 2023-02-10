@@ -1,0 +1,14 @@
+*/node_modules
+npm-debug.log
+config.env
+*/*.db*
+*/bin
+*/obj
+# directories
+**/bin/
+**/obj/
+**/out/
+
+# files
+Dockerfile*
+**/*.md

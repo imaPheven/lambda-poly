@@ -5,7 +5,6 @@ using MongoDB.Driver;
 namespace BookStoreApi.Services;
 
 
-
 public abstract class MongoService<ModelType>
   where ModelType : IMongoDoc, new() {
   protected IMongoCollection<ModelType> _collection;
