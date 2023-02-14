@@ -1,0 +1,51 @@
+@import "./_variables";
+
+$body-bg: #262a2e;
+$input-bg: #43474b;
+$input-border-color: #757981;
+$form-check-input-bg: #7D8597; // $color-secondary-1-1;
+$body-color: #CCD5DE;
+$component-active-bg: #494c54; //$color-primary-1;
+$input-placeholder-color:               #757881;
+$input-plaintext-color:                 $body-color;
+
+
+$primary:       #00C7CE;
+$secondary:     #ff58ac;
+$success:       #AAE174;
+$info:          #AA74E1;
+$warning:       #FFE58D;
+$danger:        #FF5C56;
+
+
+$box-shadow:                  0 .5rem 1rem rgba(#fff, .15);
+$box-shadow-sm:               0 .125rem .25rem rgba(#fff, .075);
+$box-shadow-lg:               .05rem -.01rem 1rem .25rem rgba(#fac7e0, .175);
+$box-shadow-inset:            inset 0 1px 2px rgba(#fff, .075);
+
+.gap-neg-1 {
+  margin-top: -1.00rem !important;
+}
+.gap-neg-2 {
+  margin-top: -1.20rem !important;
+}
+.vstack.robot.love {
+  display:inline-flex !important;
+}
+$enable-negative-margins: true;
+// $light:         $gray-100 !default;
+// $dark:          $gray-900 !default;
+// table-top-color: $secondary;
+tbody.secondary {
+  border-top-color: #ff58ac !important;
+} 
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+.record-list {
+  h3.record-type {
+    display: inline-block;
+  }
+  a.nav-link.add-new {
+    display: inline-block;
+  }
+}
