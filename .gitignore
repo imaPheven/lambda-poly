@@ -31,3 +31,4 @@ yarn-error.log*
 *.sql
 **/.serverless
 **/*.db*
+local
