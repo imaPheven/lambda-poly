@@ -9,7 +9,7 @@ public abstract class MongoService<ModelType>
   where ModelType : IMongoDoc, new() {
   protected IMongoCollection<ModelType> _collection;
 
-  public virtual async Task<List<ModelType>> GetAsync() =>
+  public virtual async Task<List<ModelType>> GetAsync(int page = 0, int size = 20) =>
     await _collection.Find(_ =>  true).ToListAsync();
   public virtual async Task<ModelType> GetAsync(string id) =>
     await _collection.Find(x =>  x.Id == id).FirstOrDefaultAsync();

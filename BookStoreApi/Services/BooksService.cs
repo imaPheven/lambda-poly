@@ -14,8 +14,8 @@ public class BooksService : MongoService<Book> {
     
   }
 
-  public override async Task<List<Book>> GetAsync() =>
-    await _collection.Find(_ =>  true).ToListAsync();
+  public override async Task<List<Book>> GetAsync(int page = 0, int size = 20) =>
+    await _collection.Find(_ =>  true).Skip(page*size).Limit(size).ToListAsync();
   public override async Task<Book> GetAsync(string id) =>
     await _collection.Find(x =>  x.Id == id).FirstOrDefaultAsync();
   public override async Task CreateAsync(Book newBook) =>

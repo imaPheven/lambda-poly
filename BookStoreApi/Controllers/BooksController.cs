@@ -13,9 +13,9 @@ public class BooksController : ControllerBase
     public BooksController(BooksService booksService) =>
         _booksService = booksService;
 
-    [HttpGet]
-    public async Task<List<Book>> Get() =>
-        await _booksService.GetAsync();
+    [HttpGet()]
+    public async Task<List<Book>> Get([FromQuery]int page = 0,[FromQuery] int pageSize = 20) =>
+        await _booksService.GetAsync(page, pageSize);
 
     [HttpGet("{id:length(24)}")]
     public async Task<ActionResult<Book>> Get(string id)
@@ -31,10 +31,13 @@ public class BooksController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(Book newBook)
-    {
-        await _booksService.CreateAsync(newBook);
-
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Post([Bind("BookName,Price,Category,Author")] Book newBook)
+    {   
+     
+            await _booksService.CreateAsync(newBook);
+     
         return CreatedAtAction(nameof(Get), new { id = newBook.Id }, newBook);
     }
 
