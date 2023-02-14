@@ -38,3 +38,4 @@ More Docs:
   - [.Net Samples](https://github.com/dotnet/dotnet-docker/tree/f9627bd9a7f0ebd4e5ab37fe0bc807b9dab086c2/samples/dotnetapp)
   - [Host and Deply](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/?view=aspnetcore-7.0)
   - [Hosting ASP.NET Core images with Docker Compose over HTTPS](https://learn.microsoft.com/en-us/aspnet/core/security/docker-compose-https?view=aspnetcore-7.0)
+  - [Deployment Models](https://learn.microsoft.com/en-us/dotnet/core/deploying/?view=vs-2022)
