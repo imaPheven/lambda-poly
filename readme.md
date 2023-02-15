@@ -27,9 +27,10 @@ docker-compose up
 ```
 
 Navigate to:
-- Book store api swagger: http://localhost:5088/swagger/index.html
-- MVC Movies: http://localhost:7186
-- Manage Mongo (express): http://localhost:8050
+- MVC Movies: http://localhost:3010
+- Book store api swagger: http://localhost:3011/swagger/index.html
+- Manage Mongo (express): http://localhost:3020
+- Manage Postgres (Adminer): http://localhost:3021
 
 More Docs:
 - .Net

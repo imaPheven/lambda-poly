@@ -1,6 +1,8 @@
 version: "3.9"
 services:
-  dotnet-mvc-movie:
+
+  ## Web Apps
+  webapp-mvc-movie:
     build: 
       context: ./MvcMovie
       dockerfile: ./Dockerfile
@@ -8,11 +10,12 @@ services:
       - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
       - ${HOME}/.aspnet/https:/root/.aspnet/https/
     ports:
-      - 7186:80
+      - 3010:80
     env_file:
       - ./dev.env
 
-  dotnet-bookstore-api:
+  ## API Services
+  api-bookstore:
     build: 
       context: ./BookStoreApi
       dockerfile: ./Dockerfile
@@ -21,14 +24,16 @@ services:
       - ${HOME}/.aspnet/https:/root/.aspnet/https/
       - ./BookStoreApi:/opt/BookStoreApi
     ports:
-      - 5088:80
+      - 3011:80
     networks:
       - MONGO
     env_file:
       - ./dev.env
     depends_on:
       - mongo-backend
-  mongo-backend:
+  
+  ## DB Services
+  backend-mongo:
     image: mongo
     ports:
       - 27018:27017
@@ -39,37 +44,36 @@ services:
     env_file:
       - ./dev.env
 
-  mongo-express:
+  backend-postgres:
+    image: postgres
+    volumes:
+      - ./local/sampleDb:/data-import
+    ports:
+      - 5432:5432
+    networks:
+      - POSTGRES
+    env_file:
+      - ./dev.env
+    # psql --username "$POSTGRES_USER" < demo-small-en-20170815.sql 
+  
+  ## DB Admin Utils
+  admin-mongo:
     image: mongo-express
     ports:
-      - 8050:8081
+      - 3020:8081
     depends_on:
       - mongo-backend
     networks:
       - MONGO
     env_file:
       - ./dev.env
-
-  postgres-backend:
-    image: postgres
-    volumes:
-      - ./sampleDb:/docker-entrypoint-initdb.d
-    ports:
-      - 5432:5432
-    networks:
-      - POSTGRES
-    environment:
-      POSTGRES_PASSWORD: admin
-      POSTGRES_USER: admin
-      POSTGRES_DB: fluffy
-    # psql --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" < demo-small-en-20170815.sql 
-    
-  postgres-adminer:
+  
+  admin-postgres:
     image: adminer
     networks:
       - POSTGRES
     ports:
-      - 8080:8080
+      - 3021:8080
     
 volumes:
   db-data1:
