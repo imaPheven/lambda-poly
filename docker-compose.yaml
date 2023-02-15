@@ -4,7 +4,6 @@ services:
     build: 
       context: ./MvcMovie
       dockerfile: ./Dockerfile
-    restart: always
     volumes:
       - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
       - ${HOME}/.aspnet/https:/root/.aspnet/https/
@@ -17,7 +16,6 @@ services:
     build: 
       context: ./BookStoreApi
       dockerfile: ./Dockerfile
-    restart: always
     volumes:
       - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
       - ${HOME}/.aspnet/https:/root/.aspnet/https/
@@ -30,11 +28,8 @@ services:
       - ./dev.env
     depends_on:
       - mongo-backend
-
-
   mongo-backend:
     image: mongo
-    restart: always
     ports:
       - 27018:27017
     volumes:
@@ -46,7 +41,6 @@ services:
 
   mongo-express:
     image: mongo-express
-    restart: always
     ports:
       - 8050:8081
     depends_on:
@@ -56,9 +50,32 @@ services:
     env_file:
       - ./dev.env
 
+  postgres-backend:
+    image: postgres
+    volumes:
+      - ./sampleDb:/docker-entrypoint-initdb.d
+    ports:
+      - 5432:5432
+    networks:
+      - POSTGRES
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: fluffy
+    # psql --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" < demo-small-en-20170815.sql 
+    
+  postgres-adminer:
+    image: adminer
+    networks:
+      - POSTGRES
+    ports:
+      - 8080:8080
+    
 volumes:
   db-data1:
 
 networks:
   MONGO:
     name: MONGO
+  POSTGRES:
+    name: POSTGRES
