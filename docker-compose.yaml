@@ -22,7 +22,7 @@ services:
     volumes:
       - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
       - ${HOME}/.aspnet/https:/root/.aspnet/https/
-      - ./BookStoreApi:/opt/BookStoreApi
+      - ./api-bookstore:/opt/api-bookstore
     ports:
       - 3011:80
     networks:
@@ -30,7 +30,7 @@ services:
     env_file:
       - ./dev.env
     depends_on:
-      - mongo-backend
+      - backend-mongo
   
   ## DB Services
   backend-mongo:
@@ -41,15 +41,16 @@ services:
       - db-data1:/data/db
     networks:
       - MONGO
+    
     env_file:
       - ./dev.env
 
   backend-postgres:
-    image: postgres
+    image: postgres:bullseye
     volumes:
-      - ./local/sampleDb:/data-import
+      - ./backend-postgres/entrypoint:/docker-entrypoint-initdb.d
     ports:
-      - 5432:5432
+      - 3040:5432
     networks:
       - POSTGRES
     env_file:
@@ -62,7 +63,7 @@ services:
     ports:
       - 3020:8081
     depends_on:
-      - mongo-backend
+      - backend-mongo
     networks:
       - MONGO
     env_file:
@@ -70,6 +71,8 @@ services:
   
   admin-postgres:
     image: adminer
+    depends_on:
+      - backend-postgres
     networks:
       - POSTGRES
     ports:
@@ -77,6 +80,7 @@ services:
     
 volumes:
   db-data1:
+  vol-backend-postgres:
 
 networks:
   MONGO:

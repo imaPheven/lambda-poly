@@ -30,7 +30,7 @@ Navigate to:
 - MVC Movies: http://localhost:3010
 - Book store api swagger: http://localhost:3011/swagger/index.html
 - Manage Mongo (express): http://localhost:3020
-- Manage Postgres (Adminer): http://localhost:3021
+- Manage Postgres (Adminer): http://localhost:3021/?pgsql=backend-postgres
 
 More Docs:
 - .Net
