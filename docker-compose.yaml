@@ -4,7 +4,7 @@ services:
   ## Web Apps
   webapp-mvc-movie:
     build: 
-      context: ./MvcMovie
+      context: ./webapp-mvc-movie
       dockerfile: ./Dockerfile
     volumes:
       - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
@@ -17,7 +17,7 @@ services:
   ## API Services
   api-bookstore:
     build: 
-      context: ./BookStoreApi
+      context: ./api-bookstore
       dockerfile: ./Dockerfile
     volumes:
       - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
