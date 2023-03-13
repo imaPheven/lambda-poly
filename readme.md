@@ -67,3 +67,4 @@ More Docs:
   - [Host and Deply](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/?view=aspnetcore-7.0)
   - [Hosting ASP.NET Core images with Docker Compose over HTTPS](https://learn.microsoft.com/en-us/aspnet/core/security/docker-compose-https?view=aspnetcore-7.0)
   - [Deployment Models](https://learn.microsoft.com/en-us/dotnet/core/deploying/?view=vs-2022)
+  - [For guidance on adding packages to .NET apps, see the articles under Install and manage packages at Package consumption workflow (NuGet documentation). ](https://learn.microsoft.com/en-us/nuget/consume-packages/overview-and-workflow)
